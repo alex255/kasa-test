@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "6bb87ece-d0b0-4ede-bce4-465a4a4331d2",
+		"name": "kasa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pinkapi beer test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"response.forEach(function(beer) {\r",
+							"    pm.test(\"Test beer: \" + beer.name, function () {\r",
+							"        beer.ingredients.hops.forEach(function(hops) {\r",
+							"            if (hops.name == \"Magnum\") {\r",
+							"                pm.expect(hops.amount.value,'Magnum hops').to.eql(12.5);\r",
+							"            }\r",
+							"        });\r",
+							"\r",
+							"        pm.expect(beer.description,'Description').not.to.null;\r",
+							"        pm.expect(beer.ibu, 'IBU number').to.be.a('number');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?yeast=Wyeast 3522 - Belgian Ardennes&hops=Tomahawk",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "yeast",
+							"value": "Wyeast 3522 - Belgian Ardennes"
+						},
+						{
+							"key": "hops",
+							"value": "Tomahawk"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
