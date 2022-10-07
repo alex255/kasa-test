@@ -1,0 +1,10 @@
+
+cypress/screenshots
+cypress/videos
+cypress/downloads
+*.sh
+.eslintcache
+mochawesome-report/
+package-lock.json
+node_modules
+.vscode
